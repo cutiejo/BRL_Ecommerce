@@ -1,0 +1,495 @@
+/* Google Fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h2, .product-title, nav ul li a {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    background-color: #40c0c0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101; /* Ensure the header is above the sidebar */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.search {
+    position: relative;
+    width: 300px;
+    margin-left: 20px;
+}
+
+.search input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    position: relative;
+    margin-left: 20px;
+}
+
+.icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 10px;
+}
+
+nav {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Globals  */
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Variables  */
+:root{
+    --color_Blue: #3f93f1;
+    --color_Dark1: #1e1e1e;
+    --color_Dark2: #252527;
+    --color_Light1: #dfdfdf;
+    --color_Light2: #c4c4c4;
+}
+
+/* =============== Sidebar =============== */
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    background-color: white;
+    transition: all .5s ease;
+    z-index: 100;
+    border-right: 1px solid #ddd; /* Add border line */
+}
+.sidebar.close{
+    width: 78px;
+}
+
+/* --------- Logo ------------ */
+.logo-box{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--color_Light1);
+    transition: all .5s ease;
+}
+.logo-box:hover{
+    color: #40c0c0;
+}
+.logo-box i{
+    font-size: 30px;
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    transition: all .5s ease;
+    color: black;
+}
+.sidebar.close .logo-box i{
+    transform: rotate(360deg);
+}
+.logo-name{
+    font-size: 22px;
+    font-weight: 600;
+    color: black;
+}
+
+/* ---------- Sidebar List ---------- */
+.sidebar-list{
+    height: 100%;
+    padding: 30px 0 150px 0;
+    overflow: auto;
+}
+.sidebar-list::-webkit-scrollbar{
+    display: none;
+}
+.sidebar-list li{
+    transition: all .5s ease;
+}
+.sidebar-list li:hover{
+    background-color: #40c0c0;
+}
+.sidebar-list li .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+.sidebar-list li.active .title{
+    background-color: var(--color_Blue);
+}
+.sidebar-list li.active .bxs-chevron-down{
+    transition: all .5s ease;
+    transform: rotate(180deg);
+}
+.sidebar-list li .title .link{
+    display: flex;
+    align-items: center;
+}
+.sidebar-list li .title i{
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: black;
+    font-size: 20px;
+}
+.sidebar-list li .title .name{
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+}
+
+/* ---------------- Submenu ------------- */
+.sidebar-list li .submenu{
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.submenu .link{
+    color: var(--color_Light2);
+    font-size: 15px;
+    padding: 5px 0;
+    transition: all .5s ease;
+}
+.submenu .link:hover{
+    color: #fff;
+}
+.submenu-title{
+    display: none;
+}
+
+/* ---------------- Submenu Close ------------- */
+.sidebar.close .logo-name,
+.sidebar.close .title .name,
+.sidebar.close .title .bxs-chevron-down
+{
+    display: none;
+}
+
+.sidebar.close .sidebar-list{
+    overflow: visible;
+}
+.sidebar.close .sidebar-list li{
+    position: relative;
+}
+.sidebar.close .sidebar-list li .submenu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 10px 20px;
+    border-radius: 0 6px 6px 0;
+    height: max-content;
+    width: max-content;
+    opacity: 0;
+    transition: all .5s ease;
+    pointer-events: none;
+}
+.sidebar.close .sidebar-list li:hover .submenu{
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    background-color: white;
+}
+.sidebar.close .submenu-title{
+    display: block;
+    font-style: 18px;
+    color: black;
+}
+
+/* =============== Home Section =============== */
+.home{
+    position: relative;
+    background-color: white;
+    margin-top: 60px; /* Add this line to prevent the home section from going under the header */
+    left: 260px;
+    width: calc(100% - 260px);
+    height: calc(100vh - 60px); /* Adjust height */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+.sidebar.close ~ .home{
+    left: 78px;
+    width: calc(100% - 78px);
+}
+.home .toggle-sidebar{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+}
+.home .toggle-sidebar i{
+    font-size: 35px;
+    color: var(--color_Dark1);
+    margin-left: 15px;
+}
+.home .toggle-sidebar .text{
+    font-size: 25px;
+    color: var(--color_Dark1);
+    font-weight: 600;
+}
+
+/* ============ Responsive / Breakpoints ========== */
+@media (max-width: 1080px){
+
+}
+
+/* For Medium Devices */
+@media (max-width: 774px){
+
+}
+@media (max-width: 560px){
+
+}
+
+/* For Small Devices */
+@media (max-width: 360px){
+
+}
+.form-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+}
+
+.filter-btn:hover {
+    color: #40c0c0;
+}
+
+.filter-btn::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #4CAF50;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.filter-btn:hover::after {
+    width: 100%;
+    left: 0;
+    transform: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.form-container {
+    background-color: #F4F4F4;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: auto; /* Center horizontally */
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between; /* Space between form groups */
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1; /* Each form group takes equal space */
+    margin-right: 10px; /* Adjust spacing between form groups */
+}
+
+.form-group:last-child {
+    margin-right: 0; /* Remove right margin for the last form group in each row */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.form-group input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Styles for status in table */
+td[data-status="completed"],
+td[data-status="pending"],
+td[data-status="cancelled"] {
+    position: relative;
+    padding: 8px 15px; /* Adjust padding for better visual */
+    text-align: center;
+}
+
+/* Encircle status text and add background color */
+td[data-status="completed"]::before,
+td[data-status="pending"]::before,
+td[data-status="cancelled"]::before {
+    content: attr(data-status);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px; /* Adjust as needed */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Background color for each status */
+td[data-status="completed"]::before {
+    background-color: #28a745; /* Green for completed */
+}
+
+td[data-status="pending"]::before {
+    background-color: #ffc107; /* Yellow for pending */
+}
+
+td[data-status="cancelled"]::before {
+    background-color: #dc3545; /* Red for cancelled */
+}
