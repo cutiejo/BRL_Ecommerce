@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6e6;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #00b3b3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            height: 50px;
+        }
+        .header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons div {
+            margin-left: 20px;
+            position: relative;
+        }
+        .header .icons div span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .checkout-section {
+            display: flex;
+            justify-content: space-between;
+        }
+        .checkout-section > div {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 48%;
+        }
+        .checkout-section img {
+            width: 100px;
+            height: auto;
+        }
+        .btn-place-order {
+            background-color: #00b3b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-place-order:hover {
+            background-color: #009999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logo.png" alt="BRL Trading">
+    <input type="text" placeholder="Search">
+    <div class="icons">
+        <div><i class="fas fa-user"></i></div>
+        <div><i class="fas fa-shopping-cart"></i><span>10</span></div>
+        <div><i class="fas fa-heart"></i><span>3</span></div>
+        <div><i class="fas fa-bell"></i><span>3</span></div>
+    </div>
+</div>
+
+<div class="container checkout-container" id="checkout-container">
+    <div class="checkout-section">
+        <div>
+            <h3>Delivery Address</h3>
+            <p>Blk 08 Lot 07 Brgy. Tomas Morato, Kinaikidkad St.<br> Hev Babi, Downtown Quezon City</p>
+            <hr>
+            <h3>Message for Seller</h3>
+            <p>Please secure the package and make sure to double wrap it, thanks.</p>
+            <hr>
+            <h3>Payment Option</h3>
+            <p>Cash on Delivery</p>
+            <hr>
+            <p>Merchandise Subtotal: ₱<span id="subtotal">0.00</span></p>
+            <p>Shipping Subtotal: ₱<span id="shipping">49.00</span></p>
+            <h3>Total Payment: ₱<span id="total">0.00</span></h3>
+        </div>
+        <div>
+            <h3>Products</h3>
+            <div id="product-list">
+                <!-- Products will be inserted here -->
+            </div>
+            <hr>
+            <h3>Total Payment</h3>
+            <p style="color: red; font-size: 24px;">₱ <span id="total-checkout">0.00</span></p>
+            <button class="btn-place-order">Place Order</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve cart items and total from localStorage
+        var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+        var grandTotal = localStorage.getItem('grandTotal');
+
+        // Update checkout page with cart details
+        var productList = document.getElementById('product-list');
+        var subtotalElement = document.getElementById('subtotal');
+        var totalElement = document.getElementById('total');
+        var totalCheckoutElement = document.getElementById('total-checkout');
+        
+        var subtotal = 0;
+        cartItems.forEach(function(item) {
+            var productDiv = document.createElement('div');
+            productDiv.innerHTML = `
+                <img src="toilet_tissue.png" alt="${item.productName}">
+                <p>${item.productName}</p>
+                <p>₱ ${item.unitPrice.toFixed(2)} x ${item.quantity}</p>
+            `;
+            productList.appendChild(productDiv);
+            subtotal += item.totalPrice;
+        });
+
+        subtotalElement.textContent = subtotal.toFixed(2);
+        totalElement.textContent = (subtotal + 49).toFixed(2); // Including shipping
+        totalCheckoutElement.textContent = (subtotal + 49).toFixed(2);
+    });
+</script>
+
+</body>
+</html>
