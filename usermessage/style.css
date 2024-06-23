@@ -1,0 +1,157 @@
+.header {
+    background-color: #00BFAE;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header .search-bar {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.header .search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.header .icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header .icons i {
+    font-size: 24px;
+}
+
+body {
+    background-color: #f0f0f0; /* Set the background color of the entire section to grey */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.message-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); /* Full height of the viewport minus header height */
+    overflow: hidden; /* Prevent scrolling */
+    box-sizing: border-box;
+}
+
+.message-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.message-box {
+    flex-grow: 1; /* Allow the message box to grow and fill available space */
+    overflow-y: auto; /* Enable scrolling for the message box */
+    background-color: white; /* Set background to white */
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.message-wrapper-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.message-wrapper-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 2px; /* Add space between timestamp and message */
+}
+
+.message {
+    padding: 10px;
+    border-radius: 20px;
+    display: inline-block; /* Ensure the message background only covers the content */
+    width: fit-content; /* Make the width of the message depend on its content */
+    max-width: 80%; /* Ensure the messages don't take up the full width */
+    word-wrap: break-word; /* Ensure long words break correctly */
+    white-space: pre-wrap; /* Preserve white space and line breaks */
+}
+
+.message-blue {
+    background-color: #007bff; /* Blue background for all messages */
+    color: white; /* Ensure text is white */
+}
+
+.send-message {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.send-message input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px; /* Adjust margin to match button */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.send-message button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .header .search-bar {
+        display: none; /* Hide search bar on smaller screens */
+    }
+
+    .message-header {
+        font-size: 20px;
+    }
+
+    .message-box {
+        padding: 10px;
+    }
+
+    .send-message input {
+        padding: 5px;
+    }
+
+    .send-message button {
+        padding: 5px;
+    }
+}
