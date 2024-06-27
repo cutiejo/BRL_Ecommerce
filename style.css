@@ -1,413 +1,356 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body,
-input {
-  font-family: "Poppins", sans-serif;
-}
-
-main {
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background-image: url("./img/bg.png");
-  background-size: cover;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box {
-  position: relative;
-  width: 100%;
-  max-width: 1020px;
-  height: 640px;
-  background-color: #f5fff9;
-  border-radius: 3.3rem;
-  box-shadow: rgba(2, 1, 1, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-
-
-}
-
-.inner-box {
-  position: absolute;
-  width: calc(100% - 4.1rem);
-  height: calc(100% - 4.1rem);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-}
-
-.forms-wrap {
-  position: absolute;
-  height: 100%;
-  width: 45%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  transition: 0.8s ease-in-out;
-}
-
-form {
-  max-width: 260px;
-  width: 100%;
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  transition: opacity 0.02s 0.4s;
-}
-
-form.sign-up-form {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  width: 200px;
-  margin-right: 0.3rem;
-  margin-top: -3rem;
-}
-
-.logo h4 {
-  font-size: 1.1rem;
-  margin-top: 30px;
-  letter-spacing: -0.5px;
-  color: #151111;
-}
-
-.heading h2 {
-  font-size: 2.1rem;
-  font-weight: 600;
-  margin-top: -2px;
-  color: #151111;
-}
-
-.heading h6 {
-  color: #bababa;
-  font-weight: 400;
-  font-size: 0.75rem;
-  display: inline;
-}
-
-.toggle {
-  color: #151111;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.toggle:hover {
-  color: #92ffc0;
-}
-
-.input-wrap {
-  position: relative;
-  height: 37px;
-  margin-bottom: 2rem;
-}
-
-.input-field {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #bbb;
-  padding: 0;
-  font-size: 0.95rem;
-  color: #151111;
-  transition: 0.4s;
-}
-
-label {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.95rem;
-  color: #bbb;
-  pointer-events: none;
-  transition: 0.4s;
-}
-
-.input-field.active {
-  border-bottom-color: #151111;
-}
-
-.input-field.active + label {
-  font-size: 0.75rem;
-  top: -2px;
-}
-
-.sign-btn {
-  display: inline-block;
-  width: 100%;
-  height: 43px;
-  background-color: #151111;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 0.8rem;
-  font-size: 0.8rem;
-  margin-bottom: 2rem;
-  margin-top: 20px;
-  transition: 0.3s;
-}
-
-.sign-btn:hover {
-  background-color: #0c5f90;
-}
-
-.text {
-  color: #bbb;
-  font-size: 0.7rem;
-}
-
-.text a {
-  color: #bbb;
-  transition: 0.3s;
-}
-
-.text a:hover {
-  color: #71fdfd;
-}
-
-main.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  pointer-events: none;
-}
-
-main.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  pointer-events: all;
-}
-
-main.sign-up-mode .forms-wrap {
-  left: 55%;
-}
-
-main.sign-up-mode .carousel {
-  left: 0%;
-}
-
-.carousel {
-  position: absolute;
-  height: 100%;
-  width: 55%;
-  left: 45%;
-  top: 0;
-  background-color: #e9e9e9;
-
-  box-shadow: rgba(29, 28, 28, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  border-radius: 2rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  padding-bottom: 2rem;
-  overflow: hidden;
-  transition: 0.8s ease-in-out;
-  
-}
-
-.images-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  margin-top: 60px;
-  
-}
-
-.image {
-  width: 100%;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.5s;
-}
-
-.img-1 {
-  transform: translate(0, -50px);
-}
-
-.img-2 {
-  transform: scale(0.4, 0.5);
-}
-
-.img-3 {
-  transform: scale(0.3) rotate(-20deg);
-}
-
-.image.show {
-  opacity: 1;
-  transform: none;
-}
-
-.text-slider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.text-wrap {
-  max-height: 2.2rem;
-  overflow: hidden;
-  margin-bottom: 2.5rem;
-}
-
-.text-group {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  transform: translateY(0);
-  transition: 0.5s;
-}
-
-.text-group h2 {
-  line-height: 2.2rem;
-  font-weight: 600;
-  font-size: 1.6rem;
-}
-
-.bullets {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bullets span {
-  display: block;
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: #aaa;
-  margin: 0 0.25rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.1s;
-}
-
-.bullets span.active {
-  width: 1.1rem;
-  background-color: #151111;
-  border-radius: 1rem;
-}
-
-@media (max-width: 850px) {
-  .box {
-    height: auto;
-    max-width: 550px;
-    overflow: hidden;
-  }
-
-  .inner-box {
-    position: static;
-    transform: none;
-    width: revert;
-    height: revert;
-    padding: 2rem;
-  }
-
-  .forms-wrap {
-    position: revert;
-    width: 100%;
-    height: auto;
-  }
-
-  form {
-    max-width: revert;
-    padding: 1.5rem 2.5rem 2rem;
-    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
-  }
-
-  .heading {
-    margin: 2rem 0;
-  }
-
-  form.sign-up-form {
-    transform: translateX(100%);
-  }
-
-  main.sign-up-mode form.sign-in-form {
-    transform: translateX(-100%);
-  }
-
-  main.sign-up-mode form.sign-up-form {
-    transform: translateX(0%);
-  }
-
-  .carousel {
-    position: revert;
-    height: auto;
-    width: 100%;
-    padding: 3rem 2rem;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
-  }
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white; /* Ensure background is white */
+}
 
-  .images-wrapper {
-    display: none;
-  }
-
-  .text-slider {
+.header {
+    background-color: #00BFAE;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-  }
+    box-sizing: border-box;
 }
 
-@media (max-width: 530px) {
-  main {
-    padding: 1rem;
-  }
-
-  .box {
-    border-radius: 2rem;
-  }
-
-  .inner-box {
-    padding: 1rem;
-  }
-
-  .carousel {
-    padding: 1.5rem 1rem;
-    border-radius: 1.6rem;
-  }
-
-  .text-wrap {
-    margin-bottom: 1rem;
-  }
-
-  .text-group h2 {
-    font-size: 1.2rem;
-  }
-
-  form {
-    padding: 1rem 2rem 1.5rem;
-  }
+.header .logo {
+    display: flex;
+    align-items: center;
 }
 
+.header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
 
+.header .search-bar {
+    flex: 1;
+    margin: 0 20px;
+}
 
+.header .search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
 
-/*add*/
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed for spacing between buttons */
+}
 
+.icons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* Adjusted the font size to make icons smaller */
+    padding: 0; /* Remove padding */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    margin-left: 20px; /* Add margin to create space between buttons */
+}
 
+.icons button i {
+    background: none;
+    border: none;
+    padding: 0; /* Remove padding */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    font-size: 20px; /* Adjust the font size of the icons */
+}
 
+.message-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); /* Full height of the viewport minus header height */
+    overflow: hidden; /* Prevent scrolling */
+    box-sizing: border-box;
+    background-color: white; /* Set background to white */
+}
+
+.message-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.message-box {
+    flex-grow: 1; /* Allow the message box to grow and fill available space */
+    overflow-y: auto; /* Enable scrolling for the message box */
+    background-color: #f0f0f0; /* Set background to grey */
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border-bottom: 2px solid black; /* Add a black line under the message box */
+}
+
+.message-wrapper-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.message-wrapper-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 2px; /* Add space between timestamp and message */
+}
+
+.message {
+    padding: 10px;
+    border-radius: 20px;
+    display: inline-block; /* Ensure the message background only covers the content */
+    width: fit-content; /* Make the width of the message depend on its content */
+    max-width: 80%; /* Ensure the messages don't take up the full width */
+    word-wrap: break-word; /* Ensure long words break correctly */
+    white-space: pre-wrap; /* Preserve white space and line breaks */
+}
+
+.message-blue {
+    background-color: #007bff; /* Blue background for all messages */
+    color: white; /* Ensure text is white */
+}
+
+.send-message {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.send-message input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px; /* Adjust margin to match button */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.send-message button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .header .search-bar {
+        display: none; /* Hide search bar on smaller screens */
+    }
+
+    .message-header {
+        font-size: 20px;
+    }
+
+    .message-box {
+        padding: 10px;
+    }
+
+    .send-message input {
+        padding: 5px;
+    }
+
+    .send-message button {
+        padding: 5px;
+    }
+}
+
+.footer {
+    background-color: #40c0c0;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the items vertically */
+    text-align: center; /* Center align the text */
+    margin-bottom: 20px;
+}
+
+.footer-left img {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-section p {
+    margin: 5px 0;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}
+
+.footer-section a i {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .search {
+        width: 200px;
+    }
+
+    nav ul li {
+        margin-right: 10px;
+    }
+
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-item {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-right {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search {
+        width: 150px;
+    }
+
+    .product-item {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+.icon {
+    position: relative;
+    margin-left: 20px;
+}
+
+.icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0; /* Remove padding */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+}
+
+.icon i {
+    background: none;
+    border: none;
+    padding: 0; /* Remove padding */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    font-size: 20px; /* Adjust the font size of the icons */
+}
+
+.icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 10px;
+}
+
+/* Additional CSS for Centering Navigation Links */
+nav {
+    display: flex;
+    justify-content: center; /* Center the navigation links */
+    margin-top: 20px; /* Add some margin to the top if needed */
+    border-bottom: 1px solid #ddd;
+    
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 15px;
+   
+}
+
+nav ul li {
+    margin: 0 15px; /* Adjust the margin as needed */
+   
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black; /* Set the text color */
+    font-size: 16px; /* Set the font size */
+    font-weight: bold; /* Make the text bold */
+    padding-bottom: 15px; /* Add padding to the bottom of the links */
+}
