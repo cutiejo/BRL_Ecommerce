@@ -1,4 +1,5 @@
 <?php
+
 include '../connections.php';
 
 $query = "SELECT * FROM messagesc ORDER BY created_at ASC";
