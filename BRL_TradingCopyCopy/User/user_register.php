@@ -2,13 +2,19 @@
 // Include the database connection file
 include 'connections.php';
 
+// Initialize variables for error messages
+$password_error = '';
+$mobile_error = '';
+$message = '';
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $full_name = $_POST['full-name'];
     $gender = $_POST['gender'];
-    $address = $_POST['address'];
+    $email = $_POST['email'];
     $birthday = $_POST['birthday'];
+    $address = $_POST['address'];
     $password = $_POST['password'];
     $mobile_number = $_POST['mobile'];
 
@@ -16,21 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
     $mobile_pattern = "/^9\d{9}$/";
     if (!preg_match($password_pattern, $password)) {
-        $message = "Password does not meet the requirements.";
+        $password_error = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
     } elseif (!preg_match($mobile_pattern, $mobile_number)) {
-        $message = "Mobile number must start with 9 and be 10 digits long.";
+        $mobile_error = "Mobile number must start with 9 and be 10 digits long.";
     } else {
         // Hash the password for security
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Prepare and bind
-        $stmt = $conn->prepare("INSERT INTO user_details (full_name, gender, address, birthday, password, mobile_number) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $full_name, $gender, $address, $birthday, $hashed_password, $mobile_number);
+        $stmt = $conn->prepare("INSERT INTO user_details (full_name, gender, email, birthday, address, password, mobile_number) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $full_name, $gender, $email, $birthday, $address, $hashed_password, $mobile_number);
 
         // Execute the statement
         if ($stmt->execute()) {
             // Redirect to login page after successful registration
-            header("Location: user_details.php");
+            header("Location: http://localhost/BRL_Ecommerce-main/BRL_TradingCopyCopy/LOGIN/login.php");
             exit(); // Make sure to call exit after redirection
         } else {
             $message = "Error: " . $stmt->error;
@@ -44,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,8 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-container">
             <h2>Register Account</h2>
             <?php
-            if (isset($message)) {
-                echo "<p>$message</p>";
+            if (!empty($message)) {
+                echo "<p class='error-message'>$message</p>";
             }
             ?>
             <form action="" method="post" onsubmit="return validateForm()">
@@ -93,8 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="birthday">Birthday</label>
@@ -103,18 +114,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-row">
                     <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        <small>Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.</small>
+                        <div class="error-message"><?php echo $password_error; ?></div>
                     </div>
                     <div class="form-group">
                         <label for="mobile">Mobile Number</label>
                         <div style="display: flex; align-items: center;">
                             <img src="philippines_flag.png" alt="Philippines Flag" style="height: 15px; margin-right: 10px;">
                             <span style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px;">+63</span>
-                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number ex. 9989263405" required>
                         </div>
-                        <small>Mobile number must start with 9 and be 10 digits long. <br>ex. 9989263405</small>
+                        <div class="error-message mobile-error"><?php echo $mobile_error; ?></div>
                     </div>
                 </div>
                 <br>
@@ -130,20 +147,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function validatePassword() {
             var password = document.getElementById("password").value;
             var passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            var passwordError = document.querySelector('.error-message');
             if (!passwordPattern.test(password)) {
-                alert("Password does not meet the requirements.");
+                passwordError.textContent = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
                 return false;
             }
+            passwordError.textContent = "";
             return true;
         }
 
         function validateForm() {
             var mobile = document.getElementById("mobile").value;
             var mobilePattern = /^9\d{9}$/;
+            var mobileError = document.querySelector('.mobile-error');
             if (!mobilePattern.test(mobile)) {
-                alert("Mobile number must start with 9 and be 10 digits long.");
+                mobileError.textContent = "Mobile number must start with 9 and be 10 digits long.";
                 return false;
             }
+            mobileError.textContent = "";
             return validatePassword();
         }
     </script>
