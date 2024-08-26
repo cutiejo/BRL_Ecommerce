@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.message-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.message-header {
+    font-size: 24px;
+    margin-bottom: 100px;
+    
+}
+
+.message-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border-bottom: 2px solid black;
+}
+
+.message-wrapper-right, .message-wrapper-left {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.message-wrapper-right {
+    align-items: flex-end;
+}
+
+.message-wrapper-left {
+    align-items: flex-start;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 20px;
+    display: inline-block;
+    width: fit-content;
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    background-color: #007bff;
+    color: white;
+}
+
+.message img {
+    max-width: 100px;
+    display: block;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: none;
+}
+
+.send-message {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.send-message input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.send-message button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 30%;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .header .search-bar {
+        display: none;
+    }
+
+    .message-header {
+        font-size: 20px;
+    }
+
+    .message-box {
+        padding: 10px;
+    }
+
+    .send-message input {
+        padding: 5px;
+    }
+
+    .send-message button {
+        padding: 5px;
+    }
+}

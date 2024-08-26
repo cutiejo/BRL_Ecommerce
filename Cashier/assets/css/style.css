@@ -1,0 +1,1175 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #0d74f5;
+  --white: #f8f9fa;
+  --gray: #e9ecef;
+  --black1: #222;
+  --black2: #999;
+  --red: #f62727;
+  --green:#4CAF50;
+  --black2:#33394a;
+
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  
+}
+
+/* =============== Navigation ================ */
+
+
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+ /* background: linear-gradient(0deg, #1302f7 0%, #132125 100%)*/
+  background-color: #132125; /* Set the background color to white or your desired color */
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+  
+}
+/*
+.navigation .background-line {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  background-color: var(--white);
+  left: 20px;
+  padding-left: 800px;
+  padding-right: 100px;
+  top: 0;
+}*/
+
+.navigation img {
+  position: absolute;
+  z-index: 1; /* Ensure the image is above the background line */
+  height: 80px; /* Adjust the height as needed */
+  width: 130px; /* Adjust the width as needed */
+  background-color: transparent;
+ 
+  left: 0;
+  top: 70%;
+  transform: translateY(-50%);
+}
+
+
+/* nn */
+
+
+
+
+
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+  
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+  
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+
+
+
+#searchInput {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  width: 190px; /* Adjust the width as needed */
+}
+
+
+
+.search {
+  position: relative;
+  width: 100px;
+  margin: 0 10px;
+  margin-top: 70px;
+}
+
+.search label {
+  position: relative;
+  width: 50%;
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================= Cards ====================== */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  
+}
+
+.cardBox .card {
+  position: relative;
+  background: #CFE8FF;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--black1);
+}
+
+.cardBox .card .cardName {
+  color: var(--black2);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.cardBox .card .iconBx {
+  font-size: 3.5rem;
+  color: var(--black2);
+}
+
+.cardBox .card:hover {
+  background: var(--blue);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
+  color: var(--white);
+}
+
+/* ================== Charts JS ============== */
+.chartsBx{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 30px;
+}
+
+.chartsBx .chart{
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  border: 1px solid var(--blue);
+}
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  height: 400px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+
+
+.recentCustomers {
+  position: relative;
+  display: grid;
+  height: 400px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.recentCustomers .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recentCustomers table tr td {
+  padding: 12px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+.recentCustomers table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span {
+  color: var(--white);
+}
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .chartsBx{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    position: sticky;
+    top: 0;
+    background-color: #f2f2f2;
+    z-index: 100;
+}
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+
+/*title*/
+.title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.title:hover {
+  color: #2196F3; /* Change color on hover */
+  transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
+.title ion-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.title h4 {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-bottom: 0;
+  transition: color 0.3s;
+}
+
+.title:hover h4 {
+  color: #2196F3; /* Change color on hover */
+}
+@media only screen and (max-width: 600px) {
+  .title h4 {
+      font-size: 18px;
+  }
+}
+
+
+
+
+/*add*/
+
+
+/* Dropdown styles sa profile*/
+
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: -10px;
+}
+
+
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-left: -40px;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #cecbcb;
+}
+
+.user-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+/*add*/
+
+/* Your existing styles for the dropdown and user image */
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/*product*/
+
+
+.product-content {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+
+
+.content-header {
+  background-color: #117dae;
+  color: white; /* Set text color to white */
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px; /* Add padding for better visual */
+  border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+}
+
+.add-product-btn {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-product-btn ion-icon {
+  margin-right: 5px;
+  margin-bottom: -3px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.product-item {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.product-item h3 {
+  margin-top: 0;
+}
+
+.product-item p {
+  margin: 10px 0;
+}
+
+
+.product-list {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.product-item {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.product-item h3 {
+  margin-top: 0;
+}
+
+.product-item p {
+  margin: 10px 0;
+}
+
+/*pop up*/
+
+.notification-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.notification-modal h2 {
+  margin-bottom: 10px;
+}
+
+.notification-modal.show {
+  display: block;
+}
+
+
+
+
+
+
+
+/*purchase*/
+
+.purchase-order-list {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.purchase-order-item {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.purchase-order-item h3 {
+  margin-top: 0;
+}
+
+.purchase-order-item p {
+  margin: 10px 0;
+}
+
+/*reports*/
+
+.reports-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.report-item {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.report-item h3 {
+  margin-top: 0;
+}
+
+.report-item p {
+  margin: 10px 0;
+}
+
+
+/*user-------------------------------------------------------------------------------------------------------*/
+
+.user-table-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+
+.user_table {
+  position: sticky;
+  top: 0;
+  background-color:#f8f9fa;
+  padding: 10px;
+  margin: 0;
+  z-index: 2; /* Ensure the elements stay above other content */
+  background-color: #117dae;
+  border-radius: 8px 8px 0 0; 
+  color: white;
+}
+.user_thead{
+  position: sticky;
+  top: 0;
+  background-color:#f8f9fa;
+  padding: 10px;
+  margin: 0;
+  z-index: 2; /* Ensure the elements stay above other content */
+  background-color:rgba(0, 0, 0, 0.801);
+  border-radius: 8px 8px 0 0; 
+  color: white;
+ 
+}
+.user_form{
+  background-color: #117dae;
+  border-radius: 8px 8px 0 0; 
+  padding: 7px;
+  color: white;
+  font-size: 18px;
+}
+.user_table {
+  z-index: 3; /* Higher z-index for h2 to stay above thead */
+  
+}
+
+.table-scroll-container {
+  max-height: 300px; /* Set a fixed height for the scrollable tbody */
+  overflow-y:auto;
+  position: sticky;
+  margin-top: 20px;
+  
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0px; /* Add margin to create space for h2 */
+  
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.add-user-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/*user-------------------------------------------------------------------------------------------------------*/
+
+
+/*settings*/
+
+.settings-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*product add button and modal*/
+
+
+/* Add Product Button */
+.add-product-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-product-btn:hover {
+  background-color: #45a049;
+}
+
+/* Add Product Modal 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+*/
+
+/* Modal styles ng add product*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  border-radius: 8px;
+  position: absolute;
+  top: 20%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-content h2{
+  background-color: var(--blue);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+/*sub menu*/
+.submenu {
+  position: relative;
+}
+
+.submenu > ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+}
+
+.submenu:hover > ul {
+  display: block;
+}
+
+
+/*title*/
+.content-header {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+  margin-bottom: 10px; /* Add some space below the header */
+}
+
+
+
+/*logout*/
+
+.logout-btn,
+.cancel-btn {
+    /* Add common button styles */
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.logout-btn {
+    /* Add styles for the logout button */
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.cancel-btn {
+    /* Add styles for the cancel button */
+    background-color: #117dae;
+    color: #fff;
+}
+
+.modal-message p{
+  border: 1px;
+  padding: auto;
+  align-items: center;
+}
+
+/*purchase*/
+
+
+
+.content-wrapper {
+  background-color: #f4f6f9;
+  padding-top: 20px;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.datetimepicker-input {
+  cursor: pointer;
+}
+
+/* Style for the product table */
+#producttable {
+  margin-top: 20px;
+}
+
+/* Style for the action button in the product table */
+.btntbldlt {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btntbldlt:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}

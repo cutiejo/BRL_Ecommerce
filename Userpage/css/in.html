@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="mw.css"> 
+    <title>CSS SLIDER</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="wrapper-holder">
+                <div id="slider-img-1"></div> 
+                <div id="slider-img-2"></div> 
+                <div id="slider-img-3"></div> 
+                <div id="slider-img-4"></div>
+            </div>
+        </div>
+        <div class="button-holder"> 
+            <a href="#slider-img-1" id="button-1" class="button"></a> 
+            <a href="#slider-img-2" id="button-2" class="button"></a>
+            <a href="#slider-img-3" id="button-3" class="button"></a>
+            <a href="#slider-img-4" id="button-4" class="button"></a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var buttons = document.querySelectorAll('.button');
+            var wrapperHolder = document.querySelector('.wrapper-holder');
+            var slideWidth = wrapperHolder.clientWidth; // Width of each slide
+            var currentIndex = 0; // Initialize current slide index
+
+            // Function to update button colors based on current slide
+            function updateButtonColors(index) {
+                buttons.forEach(function(button, i) {
+                    if (i === index) {
+                        button.style.backgroundColor = '#494242'; // Active button color
+                    } else {
+                        button.style.backgroundColor = '#958E8E'; // Inactive button color
+                    }
+                });
+            }
+
+            // Function to handle slide change based on transform translateX
+            function handleSlideChange() {
+                var transformValue = getComputedStyle(wrapperHolder).transform;
+                var currentPosition = parseFloat(transformValue.split(',')[4]) || 0; // Current translateX value
+                var newIndex = Math.round(-currentPosition / slideWidth); // Calculate current slide index
+
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    updateButtonColors(currentIndex);
+                }
+            }
+
+            // Listen for slide change events during the animation
+            setInterval(handleSlideChange, 100); // Check every 100ms for slide changes
+
+            // Event listeners for button clicks
+            buttons.forEach(function(button, index) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    currentIndex = index;
+                    var newPosition = -currentIndex * slideWidth;
+                    wrapperHolder.style.transform = 'translateX(' + newPosition + 'px)';
+                    updateButtonColors(currentIndex);
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

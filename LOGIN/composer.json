@@ -1,0 +1,8 @@
+{
+    "name": "vendor/brl",
+    "description": "BRL Trading",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {}
+}

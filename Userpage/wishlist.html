@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6e6;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #00b3b3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            height: 50px;
+        }
+        .header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons div {
+            margin-left: 20px;
+            position: relative;
+        }
+        .header .icons div span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+        }
+        .container {
+            background-color: white;
+            margin: 20px auto;
+            width: 80%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .product-item img {
+            width: 50px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .product-item h3 {
+            margin: 0;
+            flex: 1;
+        }
+        .product-item .price {
+            color: red;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        .product-item .like {
+            color: red;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logo.png" alt="BRL Trading">
+    <input type="text" placeholder="Search">
+    <div class="icons">
+        <div><i class="fas fa-user"></i></div>
+        <div><i class="fas fa-shopping-cart"></i><span>10</span></div>
+        <div><i class="fas fa-heart"></i><span>8</span></div>
+        <div><i class="fas fa-bell"></i><span>3</span></div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Likes 3</h2>
+    <ul class="product-list">
+        <li class="product-item">
+            <img src="toilet_tissue.png" alt="Toilet Tissue Paper">
+            <h3>Toilet Tissue Paper</h3>
+            <div class="price">₱ 249.00</div>
+            <div class="like">❤</div>
+        </li>
+        <li class="product-item">
+            <img src="anti_bacterial_soap.png" alt="Anti Bacterial Soap">
+            <h3>Anti Bacterial Soap</h3>
+            <div class="price">₱ 249.00</div>
+            <div class="like">❤</div>
+        </li>
+        <li class="product-item">
+            <img src="anti_bacterial_soap.png" alt="Anti - bacterial soap">
+            <h3>Anti - bacterial soap</h3>
+            <div class="price">₱ 249.00</div>
+            <div class="like">❤</div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?php
+// Include the database connection
+include '../connections.php';
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addStock"])) {
+    // Get the product ID and stock quantity from the form
+    $productId = $_POST["productSelect"];
+    $stockQuantity = $_POST["stockQuantity"];
+
+    // Update the stock table
+    $updateStockQuery = "UPDATE stock SET stock_quantity = stock_quantity + $stockQuantity WHERE product_id = $productId";
+    $updateStockResult = mysqli_query($conn, $updateStockQuery);
+
+    // Check if the update was successful
+    if (!$updateStockResult) {
+        die("Error updating stock: " . mysqli_error($conn));
+    }
+
+    // Increment the stock quantity in the tbl_product table
+    $incrementProductQuery = "UPDATE tbl_product SET stock_quantity = stock_quantity + $stockQuantity WHERE pid = $productId";
+    $incrementProductResult = mysqli_query($conn, $incrementProductQuery);
+
+    // Check if the update was successful
+    if (!$incrementProductResult) {
+        die("Error updating product stock: " . mysqli_error($conn));
+    }
+
+    // Redirect to the stock.php page after successful update
+    header("Location: stock.php");
+    exit();
+} else {
+    // Redirect to the stock.php page if the form was not submitted
+    header("Location: stock.php");
+    exit();
+}
+?>

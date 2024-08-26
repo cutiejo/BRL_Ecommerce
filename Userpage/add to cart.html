@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6e6;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #00b3b3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            height: 50px;
+        }
+        .header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons div {
+            margin-left: 20px;
+            position: relative;
+        }
+        .header .icons div span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+        }
+        .cart-container {
+            background-color: white;
+            margin: 20px auto;
+            width: 80%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .cart-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-container th, .cart-container td {
+            padding: 30px;
+            border: 1px solid #eaeaea;
+            text-align: center;
+        }
+        .cart-container th {
+            background-color: #f2f2f2;
+        }
+        .cart-container img {
+            width: 50px;
+            height: auto;
+        }
+        .cart-container .total {
+            font-weight: bold;
+        }
+        .cart-container .btn-delete {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .cart-container .btn-delete:hover {
+            background-color: darkred;
+        }
+        .cart-container .btn-checkout {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .cart-container .btn-checkout:hover {
+            background-color: darkorange;
+        }
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .total-price-footer {
+            text-align: right;
+            flex: 1;
+            margin-right:30px ;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logo.png" alt="BRL Trading">
+    <input type="text" placeholder="Search">
+    <div class="icons">
+        <div><i class="fas fa-user"></i></div>
+        <div><i class="fas fa-shopping-cart"></i><span>10</span></div>
+        <div><i class="fas fa-heart"></i><span>3</span></div>
+        <div><i class="fas fa-bell"></i><span>3</span></div>
+    </div>
+</div>
+
+<div class="cart-container">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><img src="toilet_tissue.png" alt="Toilet Tissue Paper"> Toilet Tissue Paper</td>
+                <td class="unit-price">249.00</td>
+                <td>
+                    <button onclick="updateQuantity(this, -1)">−</button>
+                    <span class="quantity">10</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </td>
+                <td class="total-price">2490.00</td>
+                <td><button class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><img src="anti_bacterial_soap.png" alt="Anti Bacterial Soap"> Anti Bacterial Soap</td>
+                <td class="unit-price">249.00</td>
+                <td>
+                    <button onclick="updateQuantity(this, -1)">−</button>
+                    <span class="quantity">80</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </td>
+                <td class="total-price">19920.00</td>
+                <td><button class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><img src="anti_bacterial_soap.png" alt="Anti - bacterial soap"> Anti - bacterial soap</td>
+                <td class="unit-price">249.00</td>
+                <td>
+                    <button onclick="updateQuantity(this, -1)">−</button>
+                    <span class="quantity">30</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </td>
+                <td class="total-price">7470.00</td>
+                <td><button class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="cart-footer">
+        <div>
+            <input type="checkbox" onclick="selectAll(this)"> Select all 
+            <button onclick="deleteSelected()">Delete</button>
+        </div>
+        <div class="total-price-footer">TOTAL: ₱<span id="grand-total">29980.00</span></div>
+        <button class="btn-checkout">Check Out</button>
+    </div>
+</div>
+
+<script>
+    function updateQuantity(element, amount) {
+        var row = element.parentElement.parentElement;
+        var quantitySpan = row.querySelector('.quantity');
+        var unitPrice = parseFloat(row.querySelector('.unit-price').textContent);
+        var quantity = parseInt(quantitySpan.textContent) + amount;
+        if (quantity >= 0) {
+            quantitySpan.textContent = quantity;
+            var totalPrice = unitPrice * quantity;
+            row.querySelector('.total-price').textContent = totalPrice.toFixed(2);
+            updateGrandTotal();
+        }
+    }
+
+    function deleteRow(element) {
+        var row = element.parentElement.parentElement;
+        row.parentElement.removeChild(row);
+        updateGrandTotal();
+    }
+
+    function deleteSelected() {
+        var checkboxes = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+        checkboxes.forEach(function(checkbox) {
+            var row = checkbox.parentElement.parentElement;
+            row.parentElement.removeChild(row);
+        });
+        updateGrandTotal();
+    }
+
+    function selectAll(element) {
+        var checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = element.checked;
+        });
+    }
+
+    function updateGrandTotal() {
+        var total = 0;
+        var rows = document.querySelectorAll('#cart-body tr');
+        rows.forEach(function(row) {
+            var totalPrice = parseFloat(row.querySelector('.total-price').textContent);
+            total += totalPrice;
+        });
+        document.getElementById('grand-total').textContent = total.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
